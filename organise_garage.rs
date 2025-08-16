@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 use std::ops::Add;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Garage<T>
 where
     T: Add<Output = T> + Copy + Debug,
