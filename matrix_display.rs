@@ -13,7 +13,11 @@ use std::fmt;
 impl fmt::Display for Matrix {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         // Iterate through each row
-        for row in &self.0 {
+        for (row_index, row) in self.0.iter().enumerate() {
+            // Add newline before each row except the first
+            if row_index > 0 {
+                writeln!(f)?;
+            }
             // Write opening parenthesis
             write!(f, "(")?;
             // Write elements with spaces between them
@@ -23,8 +27,8 @@ impl fmt::Display for Matrix {
                 }
                 write!(f, "{}", num)?;
             }
-            // Write closing parenthesis and newline
-            writeln!(f, ")")?;
+            // Write closing parenthesis
+            write!(f, ")")?;
         }
         Ok(())
     }
